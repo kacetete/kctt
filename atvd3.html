@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>TecnoVida — Formulário de Anamnese</title>
+  <style>
+    :root{
+      --card-bg: #ffffff;
+      --page-bg: #f3f6fb;
+      --accent: #0b84ff;
+      --muted: #65748b;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    body{
+      margin:0;
+      background:var(--page-bg);
+      color:#102027;
+      padding:2rem;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      min-height:100vh;
+    }
+    .container{
+      max-width:900px;
+      width:100%;
+      background:var(--card-bg);
+      border-radius:12px;
+      box-shadow:0 8px 30px rgba(16,32,39,0.08);
+      padding:1.6rem;
+    }
+    h1{ margin:0 0 0.2rem 0; font-size:1.5rem; }
+    p.lead{ margin:0 0 1rem 0; color:var(--muted); }
+    form{ display:grid; gap:1rem; }
+    fieldset{
+      border:1px solid #e2e8f0;
+      padding:1rem;
+      border-radius:8px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(250,252,255,0.9));
+    }
+    legend{ font-weight:600; padding:0 0.5rem; }
+    .grid{
+      display:grid;
+      gap:0.75rem;
+    }
+    .cols-2{ grid-template-columns: repeat(2, 1fr); display:grid; }
+    .cols-3{ grid-template-columns: repeat(3, 1fr); display:grid; gap:0.75rem; }
+    label{ display:block; font-size:0.9rem; margin-bottom:0.25rem; color:#0f1724;}
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    input[type="date"],
+    select,
+    textarea{
+      width:100%;
+      padding:0.6rem;
+      border:1px solid #dbe6f1;
+      border-radius:8px;
+      font-size:0.95rem;
+      box-sizing:border-box;
+    }
+    textarea{ min-height:84px; resize:vertical; }
+    .small-help{ font-size:0.82rem; color:var(--muted); margin-top:0.35rem;}
+    .radio-row, .checkbox-row{ display:flex; gap:1rem; align-items:center; flex-wrap:wrap; }
+    .controls{ display:flex; gap:0.5rem; justify-content:flex-end; align-items:center; }
+    button, input[type="submit"]{
+      background:var(--accent);
+      color:white;
+      border:none;
+      padding:0.6rem 1rem;
+      border-radius:8px;
+      font-weight:600;
+      cursor:pointer;
+    }
+    .secondary{ background:#e6eefc; color:#03366b; padding:0.5rem 0.75rem; border-radius:8px; }
+    .imc-box{ font-size:0.95rem; padding:0.6rem; border-radius:8px; background:#f8fafc; border:1px dashed #dbe6f1; }
+    @media (max-width:700px){
+      .cols-2,.cols-3{ grid-template-columns: 1fr; }
+      .controls{ justify-content:stretch; flex-direction:column; }
+    }
+  </style>
+</head>
+<body>
+  <main class="container" aria-labelledby="title">
+    <h1 id="title">TecnoVida — Formulário de Anamnese</h1>
+    <p class="lead">Por favor, preencha os dados com atenção. Campos marcados com * são obrigatórios.</p>
+
+    <form id="anamneseForm" action="#" method="post" novalidate>
+      <fieldset>
+        <legend>Seção 1 — Dados Pessoais</legend>
+        <div class="grid cols-2">
+          <div>
+            <label for="nome">Nome Completo *</label>
+            <input id="nome" name="nome" type="text" placeholder="Ex: Maria Silva" required minlength="3" />
+            <div class="small-help">Informe seu nome completo.</div>
+          </div>
+
+          <div>
+            <label for="nascimento">Data de Nascimento *</label>
+            <input id="nascimento" name="nascimento" type="date" required />
+            <div class="small-help">Use o formato DD/MM/AAAA (seu navegador mostrará o seletor de data).</div>
+          </div>
+
+          <div>
+            <label for="genero">Gênero *</label>
+            <select id="genero" name="genero" required>
+              <option value="">— selecione —</option>
+              <option value="feminino">Feminino</option>
+              <option value="masculino">Masculino</option>
+              <option value="nao-binario">Não-binário</option>
+              <option value="prefiro-nao-dizer">Prefiro não dizer</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="cpf">CPF (apenas dígitos) *</label>
+            <input id="cpf" name="cpf" type="number" inputmode="numeric" placeholder="Somente números" required
+                   aria-describedby="cpf-help" />
+            <div id="cpf-help" class="small-help">Usamos <code>type="number"</code> conforme solicitado — em produção, normalmente usaríamos pattern/mascara para preservar zeros à esquerda.</div>
+          </div>
+
+          <div>
+            <label for="email">E-mail *</label>
+            <input id="email" name="email" type="email" placeholder="seu@exemplo.com" required />
+            <div class="small-help">Será usado para confirmar agendamento e envio de resultados.</div>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Seção 2 — Histórico de Saúde</legend>
+        <div class="grid">
+          <div>
+            <label>Possui alguma doença crônica? *</label>
+            <div class="radio-row" role="radiogroup" aria-labelledby="doenca-cronica-label">
+              <label><input type="radio" name="doenca_cronica" value="sim" required> Sim</label>
+              <label><input type="radio" name="doenca_cronica" value="nao"> Não</label>
+            </div>
+            <div class="small-help">Escolha apenas uma opção.</div>
+          </div>
+
+          <div>
+            <label for="medicamentos">Quais medicamentos você utiliza regularmente?</label>
+            <textarea id="medicamentos" name="medicamentos" placeholder="Listar nome, dosagem e frequência"></textarea>
+            <div class="small-help">Se não usa medicamentos, escreva "Nenhum".</div>
+          </div>
+
+          <div>
+            <label>Você fuma?</label>
+            <div class="checkbox-row">
+              <label><input id="fuma" name="fuma" type="checkbox" value="sim"> Sim, atualmente fumo</label>
+            </div>
+            <div class="small-help">Marque se você fuma atualmente.</div>
+          </div>
+
+          <div>
+            <label for="altura">Altura (em cm) *</label>
+            <input id="altura" name="altura" type="number" min="30" max="300" step="0.1" placeholder="ex: 170" required />
+            <div class="small-help">Informe em centímetros (ex: 170).</div>
+          </div>
+
+          <div>
+            <label for="peso">Peso (em kg) *</label>
+            <input id="peso" name="peso" type="number" min="2" max="500" step="0.1" placeholder="ex: 68.5" required />
+            <div class="small-help">Informe em quilogramas (ex: 68.5).</div>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Seção 3 — Detalhes da Consulta</legend>
+        <div class="grid">
+          <div>
+            <label for="motivo">Qual é o principal motivo da sua consulta? *</label>
+            <textarea id="motivo" name="motivo" placeholder="Descreva em poucas linhas" required></textarea>
+          </div>
+
+          <div>
+            <label for="exercicios">Com que frequência você pratica exercícios físicos? *</label>
+            <select id="exercicios" name="exercicios" required>
+              <option value="">— selecione —</option>
+              <option value="diariamente">Diariamente</option>
+              <option value="semanalmente">Semanalmente</option>
+              <option value="raramente">Raramente</option>
+              <option value="nunca">Nunca</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="ultima_consulta">Data da Última Consulta (aproximada)</label>
+            <input id="ultima_consulta" name="ultima_consulta" type="date" />
+            <div class="small-help">Se não teve consulta anterior, deixe em branco.</div>
+          </div>
+
+          <div>
+            <label>Prefere ser contatado por? *</label>
+            <div class="radio-row" role="radiogroup" aria-labelledby="contato-label">
+              <label><input type="radio" name="contato_pref" value="telefone" required> Telefone</label>
+              <label><input type="radio" name="contato_pref" value="email"> E-mail</label>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:1rem; align-items:center; justify-content:space-between; flex-wrap:wrap;">
+            <div class="imc-box" id="imcDisplay" aria-live="polite">
+              IMC: — (preencha Altura e Peso)
+            </div>
+
+            <div class="controls">
+              <button type="button" class="secondary" id="limparBtn">Limpar</button>
+              <input type="submit" value="Enviar Anamnese" />
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+
+    <div id="sucessoMsg" role="status" style="display:none; margin-top:1rem; padding:0.9rem; border-radius:8px; background:#ecfdf5; color:#044f2f;">
+      Obrigado! Sua anamnese foi enviada com sucesso (simulação).
+    </div>
+  </main>
+
+  <script>
+    (function(){
+      const form = document.getElementById('anamneseForm');
+      const alturaEl = document.getElementById('altura');
+      const pesoEl = document.getElementById('peso');
+      const imcDisplay = document.getElementById('imcDisplay');
+      const limparBtn = document.getElementById('limparBtn');
+      const sucessoMsg = document.getElementById('sucessoMsg');
+
+      function calculaIMC(){
+        const alt = parseFloat(alturaEl.value);
+        const peso = parseFloat(pesoEl.value);
+        if (!isNaN(alt) && !isNaN(peso) && alt > 0){
+          const altM = alt / 100;
+          const imc = peso / (altM * altM);
+          imcDisplay.textContent = 'IMC: ' + imc.toFixed(1) + ' (' + imcClassificacao(imc) + ')';
+        } else {
+          imcDisplay.textContent = 'IMC: — (preencha Altura e Peso)';
+        }
+      }
+
+      function imcClassificacao(imc){
+        if (imc < 18.5) return 'Abaixo do peso';
+        if (imc < 25) return 'Peso normal';
+        if (imc < 30) return 'Sobrepeso';
+        return 'Obesidade';
+      }
+
+      alturaEl.addEventListener('input', calculaIMC);
+      pesoEl.addEventListener('input', calculaIMC);
+
+      limparBtn.addEventListener('click', function(){
+        form.reset();
+        calculaIMC();
+        sucessoMsg.style.display = 'none';
+        document.getElementById('nome').focus();
+      });
+
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        if (!form.checkValidity()){
+          form.reportValidity();
+          return;
+        }
+        sucessoMsg.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      calculaIMC();
+    })();
+  </script>
+</body>
+</html>
