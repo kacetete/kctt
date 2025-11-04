@@ -1,238 +1,103 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Portal de Serviços Públicos — Cadastro</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      line-height: 1.5;
-      margin: 0;
-      background: #f7f7f7;
-      color: #222;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 1rem;
-      background: #fff;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      border-bottom: 2px solid #ccc;
-      padding-bottom: 0.5rem;
-    }
-
-    header img {
-      width: 80px;
-      height: 80px;
-    }
-
-    header h1 {
-      font-size: 1.6rem;
-      margin: 0;
-    }
-
-    .tagline {
-      font-weight: bold;
-      color: #444;
-    }
-
-    nav {
-      background: #004080;
-      margin-top: 0.5rem;
-      border-radius: 4px;
-    }
-
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    nav li {
-      position: relative;
-    }
-
-    nav a {
-      display: block;
-      padding: 0.8rem 1rem;
-      color: #fff;
-      text-decoration: none;
-    }
-
-    nav a:hover,
-    nav a:focus {
-      background: #002d66;
-    }
-
-    nav li ul {
-      display: none;
-      position: absolute;
-      background: #004080;
-      flex-direction: column;
-      width: 200px;
-    }
-
-    nav li:hover ul {
-      display: flex;
-    }
-
-    main {
-      margin-top: 1rem;
-    }
-
-    fieldset {
-      border: 1px solid #ccc;
-      padding: 1rem;
-      border-radius: 6px;
-    }
-
-    label {
-      display: block;
-      margin-top: 0.6rem;
-      font-weight: 600;
-    }
-
-    input, button {
-      font-size: 1rem;
-      padding: 0.5rem;
-      margin-top: 0.25rem;
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    button {
-      width: auto;
-      cursor: pointer;
-      background: #004080;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      margin-top: 1rem;
-    }
-
-    button:hover {
-      background: #002d66;
-    }
-
-    small.notice {
-      font-size: 0.9rem;
-      color: #555;
-    }
-
-    footer {
-      border-top: 2px solid #ccc;
-      margin-top: 2rem;
-      padding-top: 0.5rem;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #555;
-    }
-  </style>
 </head>
 <body>
-  <div class="container">
-    <header id="topo">
-      <img src="1.jpg" alt="Brasão da prefeitura">
-      <div>
-        <h1>PORTAL DE SERVIÇOS PÚBLICOS</h1>
-        <p class="tagline">Cadastro Obrigatório</p>
-      </div>
-    </header>
 
-    <nav aria-label="Menu principal">
-      <ul>
-        <li><a href="#inicio">Início</a></li>
-        <li>
-          <a href="#servicos">Serviços</a>
-          <ul>
-            <li><a href="#presencial">Atendimento presencial</a></li>
-            <li><a href="#online">Atendimento online</a></li>
-          </ul>
-        </li>
-        <li><a href="#contato">Contato</a></li>
-        <li><a href="#faq">FAQ</a></li>
-      </ul>
-    </nav>
+  <header>
+    <img src="1.jpg" alt="Brasão da prefeitura" width="100" height="100">
+    <h1>PORTAL DE SERVIÇOS PÚBLICOS</h1>
+    <p>Cadastro Obrigatório</p>
+  </header>
 
-    <main>
-      <section id="inicio">
-        <h2>Início</h2>
-        <p>Bem-vindo(a) ao Portal de Serviços Públicos. Aqui você pode se cadastrar e acessar informações importantes sobre serviços municipais.</p>
-      </section>
+  <nav aria-label="Menu principal">
+    <ul>
+      <li><a href="#inicio">Início</a></li>
+      <li>
+        <a href="#servicos">Serviços</a>
+        <ul>
+          <li><a href="#presencial">Atendimento presencial</a></li>
+          <li><a href="#online">Atendimento online</a></li>
+        </ul>
+      </li>
+      <li><a href="#contato">Contato</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+  </nav>
 
-      <section id="cadastro">
-        <h2>Cadastrar-se</h2>
-        <form action="#" method="post" autocomplete="on">
-          <fieldset>
-            <legend>Informações pessoais</legend>
+  <main>
+    <section id="inicio">
+      <h2>Início</h2>
+      <p>Bem-vindo(a) ao Portal de Serviços Públicos. Aqui você pode realizar seu cadastro e acessar diversos serviços online oferecidos pela prefeitura.</p>
+    </section>
 
-            <label for="nome">Nome completo</label>
-            <input id="nome" name="nome" type="text" required>
+    <section id="cadastro">
+      <h2>Cadastrar-se</h2>
+      <form action="/cadastro" method="post" autocomplete="on">
+        <fieldset>
+          <legend>Informações pessoais</legend>
 
-            <label for="email">E-mail</label>
-            <input id="email" name="email" type="email" required aria-describedby="emailHelp">
-            <small id="emailHelp" class="notice">Ex.: usuario@provedor.com</small>
+          <label for="nome">Nome completo</label>
+          <input id="nome" name="nome" type="text" required>
 
-            <label for="senha">Senha</label>
-            <input id="senha" name="senha" type="password" required aria-describedby="senhaHelp">
-            <small id="senhaHelp" class="notice">Use pelo menos 8 caracteres.</small>
+          <label for="email">E-mail</label>
+          <input id="email" name="email" type="email" required>
 
-            <button type="submit">Cadastrar</button>
-          </fieldset>
-        </form>
-      </section>
+          <label for="documento">Número do documento</label>
+          <input id="documento" name="documento" type="text" inputmode="numeric" required>
 
-      <section id="servicos">
-        <h2>Serviços</h2>
-        <p>Confira abaixo as opções de atendimento disponíveis à população.</p>
-      </section>
+          <label for="senha">Senha</label>
+          <input id="senha" name="senha" type="password" minlength="8" required>
 
-      <section id="presencial">
-        <h2>Atendimento Presencial</h2>
-        <p>Disponível de segunda a sexta, das 8h às 17h, nas unidades municipais.</p>
-      </section>
+          <button type="submit">Cadastrar</button>
+        </fieldset>
+      </form>
+    </section>
 
-      <section id="online">
-        <h2>Atendimento Online</h2>
-        <p>Use o atendimento digital para solicitar serviços sem sair de casa.</p>
-      </section>
+    <section id="servicos">
+      <h2>Serviços</h2>
+      <p>Confira os tipos de atendimento disponíveis para a população.</p>
+    </section>
 
-      <section id="contato">
-        <h2>Contato</h2>
-        <p>Email: atendimento@prefeitura.gov.br<br>Telefone: (11) 1234-5678</p>
-      </section>
+    <section id="presencial">
+      <h2>Atendimento Presencial</h2>
+      <p>Disponível de segunda a sexta, das 8h às 17h, nas unidades municipais.</p>
+    </section>
 
-      <section id="faq">
-        <h2>FAQ — Perguntas Frequentes</h2>
-        <p><strong>1. O cadastro é gratuito?</strong><br>Sim, o cadastro é totalmente gratuito.</p>
-        <p><strong>2. Preciso renovar meu cadastro?</strong><br>Não, ele permanece ativo indefinidamente, salvo alterações cadastrais.</p>
-      </section>
+    <section id="online">
+      <h2>Atendimento Online</h2>
+      <p>Acesse nossos serviços digitais de forma simples e segura, sem precisar sair de casa.</p>
+    </section>
 
-      <section>
-        <h2>Informações legais</h2>
-        <p>O cadastro está sujeito à <abbr title="Lei Geral de Proteção de Dados">LGPD</abbr>.</p>
+    <section id="contato">
+      <h2>Contato</h2>
+      <p>E-mail: atendimento@prefeitura.gov.br<br>
+         Telefone: (11) 1234-5678</p>
+    </section>
 
-        <figure>
-          <img src="2.jpg" alt="Equipe de atendimento municipal" width="480" height="240">
-          <img src="3.jpg" alt="" width="480" height="240">
-          <figcaption>Atendimento presencial disponível em horários de funcionamento.</figcaption>
-        </figure>
-      </section>
-    </main>
+    <section id="faq">
+      <h2>FAQ — Perguntas Frequentes</h2>
+      <p><strong>1.</strong> O cadastro é gratuito?<br>Sim, o cadastro é totalmente gratuito.</p>
+      <p><strong>2.</strong> O que é LGPD?<br>
+         A <abbr title="Lei Geral de Proteção de Dados">LGPD</abbr> protege suas informações pessoais conforme a legislação brasileira.</p>
+    </section>
 
-    <footer>
-      <p>© 2025 Prefeitura Municipal — Endereço · Telefone</p>
-    </footer>
-  </div>
+    <section id="imagem">
+      <h2>Atendimento e Identidade Visual</h2>
+      <figure>
+        <img src="2.jpg" alt="Equipe de atendimento municipal sorridente" width="480" height="240">
+        <img src="3.jpg" alt="" width="480" height="240">
+        <figcaption>Atendimento presencial disponível nos horários de funcionamento.</figcaption>
+      </figure>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Prefeitura Municipal — Endereço · Telefone</p>
+  </footer>
+
 </body>
 </html>
