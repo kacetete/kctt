@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Atividade 4</title>
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden; 
+    }
+
+    body {
+      background-image: url('2.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 0;
+    }
+
+    .caixa {
+      position: relative;
+      z-index: 1;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: red;
+      font-size: 45px;
+      line-height: 1.5;
+      padding: 40px 60px;
+      width: 80%;
+      max-width: 1700px;
+      margin: 20px auto 0 auto; 
+      font-family: Georgia, serif;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+      text-align: justify;
+    }
+  </style>
+</head>
+<body>
+  <div class="caixa">
+    <p>
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat
+      cupiditate facere cumque ratione odio doloremque deserunt dignissimos
+      sunt eum alias voluptatum repellendus, quis, dolores perspiciatis enim
+      vero nam quisquam possimus.
+    </p>
+  </div>
+</body>
+</html>
