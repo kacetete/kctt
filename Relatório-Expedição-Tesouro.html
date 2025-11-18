@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Relatório da Expedição ao Tesouro Perdido</title>
+  <style>
+    :root{--bg:#0f1724;--card:#0b1320;--accent:#ffd166;--muted:#94a3b8}
+    body{font-family:Inter, system-ui, -apple-system, Roboto, 'Segoe UI', Arial; background:linear-gradient(180deg,#071028 0%, #0b1220 100%); color:#e6eef8; margin:0; padding:2rem}
+    .container{max-width:900px;margin:0 auto}
+    header{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    header h1{margin:0;font-size:1.6rem}
+    header p{margin:0;color:var(--muted)}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02)); padding:1.2rem;border-radius:12px;box-shadow:0 6px 20px rgba(2,6,23,0.6);margin-top:1rem}
+    nav ol{display:flex;gap:.75rem;padding:0;margin:0;list-style:none}
+    nav li{background:rgba(255,255,255,0.03);padding:.35rem .6rem;border-radius:8px;font-size:.9rem}
+    section{margin-top:1rem}
+    h2{font-size:1.1rem;margin:.4rem 0}
+    .important{background:linear-gradient(90deg, rgba(255,209,102,0.12), rgba(255,209,102,0.04));padding:.4rem;border-radius:8px;color:var(--accent);display:inline-block}
+    dl{margin:0}
+    dt{font-weight:600}
+    dd{margin:0 0 0.8rem 0;padding-left:0.5rem;color:var(--muted)}
+    ol,ul{margin:0 0 0 1.2rem;padding:0.2rem 0}
+    .status{display:inline-block;padding:.25rem .6rem;border-radius:999px;background:#0f1724;border:1px solid rgba(255,255,255,0.03)}
+    .status.evaluating{color:#f59e0b;border-color:#f59e0b33}
+    footer{margin-top:1.2rem;color:var(--muted);font-size:.9rem}
+    .card pre{background:rgba(0,0,0,0.12);padding:0.6rem;border-radius:8px;overflow:auto}
+    /* small responsive */
+    @media (max-width:600px){body{padding:1rem}header{flex-direction:column;align-items:flex-start}nav ol{flex-wrap:wrap}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>Relatório da Expedição ao Tesouro Perdido</h1>
+        <p>Documento: Registro oficial da equipe de arqueólogos digitais</p>
+      </div>
+      <div>
+        <time datetime="2025-09-30">30 de setembro de 2025</time>
+      </div>
+    </header>
+
+    <nav class="card" aria-label="sumário">
+      <ol>
+        <li>1. Relatório de Descoberta</li>
+        <li>2. Análise dos Artefatos</li>
+        <li>3. Próximos Passos</li>
+      </ol>
+    </nav>
+
+    <main>
+      <article class="card" aria-labelledby="descoberta">
+        <h2 id="descoberta">1. Relatório de Descoberta</h2>
+        <p>O <strong>Tesouro Perdido</strong> foi encontrado na ilha de <span class="important">Cyberspace</span>. A descoberta é considerada <strong>significativa</strong> pela presença de artefatos valiosos.</p>
+
+        <section aria-labelledby="detalhes">
+          <h3 id="detalhes">Detalhes da Descoberta</h3>
+
+          <dl>
+            <dt>Localização da Caixa</dt>
+            <dd>Monte Sintaxe, Coordenada 12</dd>
+
+            <dt>Status</dt>
+            <dd><span class="status evaluating">Em avaliação</span></dd>
+          </dl>
+
+          <h4>Itens Encontrados</h4>
+          <ol>
+            <li>Mapa antigo</li>
+            <li>Diário de bordo</li>
+            <li>Amuletos de jade</li>
+          </ol>
+        </section>
+      </article>
+
+      <article class="card" aria-labelledby="analise">
+        <h2 id="analise">2. Análise dos Artefatos</h2>
+        <p>Comentários iniciais e hipóteses sobre a origem, datagem e materialidade dos itens.</p>
+
+        <details>
+          <summary>Resumo rápido</summary>
+          <p>O mapa parece indicar rotas náuticas; o diário contém anotações em código; os amuletos apresentam traços de jade polido.</p>
+        </details>
+
+        <section>
+          <h4>Observações imediatas</h4>
+          <ul>
+            <li>Preservação geral: <strong>boa</strong> (sujeito a verificação laboratorial)</li>
+            <li>Necessidade de análise forense para datação</li>
+            <li>Possível valor histórico e cultural elevado</li>
+          </ul>
+        </section>
+      </article>
+
+      <article class="card" aria-labelledby="proximos">
+        <h2 id="proximos">3. Próximos Passos</h2>
+        <ol>
+          <li>Registrar os artefatos em inventário oficial.</li>
+          <li>Encaminhar itens ao laboratório para análise e datação.</li>
+          <li>Montar protocolo de conservação preventiva.</li>
+          <li>Elaborar relatório estendido com fotografias e transcrição do diário.</li>
+        </ol>
+
+        <p class="muted">Responsável: Equipe de Arqueologia Digital</p>
+      </article>
+
+      <aside class="card" aria-labelledby="anotacoes">
+        <h3 id="anotacoes">Anotações Rápidas</h3>
+        <pre>// Observações da expedição
+- Coordenadas precisam de verificação por GPS.
+- Fotos tiradas em 4K; backups criptografados.
+- Acesso restrito aos artefatos até conclusão das análises.
+</pre>
+      </aside>
+
+    </main>
+
+    <footer>
+      <p>Gerado automaticamente a partir dos dados fornecidos. Para exportar este relatório como PDF ou solicitar alterações (ex.: incluir imagens, adicionar autores, anexar mapas georreferenciados), responda solicitando a ação desejada.</p>
+    </footer>
+  </div>
+</body>
+</html>
