@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Relatório de Descoberta - Cápsula do Tempo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 20px;
+    }
+    nav {
+      margin-bottom: 20px;
+      background-color: #f0f0f0;
+      padding: 10px;
+      border-left: 5px solid #333;
+    }
+    nav ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    nav ul li {
+      margin: 5px 0;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #0077cc;
+    }
+    h1, h2, h3 {
+      color: #333;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      border: 1px solid #aaa;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    caption {
+      caption-side: top;
+      font-weight: bold;
+      padding: 10px;
+    }
+    ul {
+      margin-top: 0;
+    }
+
+    .mapa {
+      display: grid;
+      grid-template-columns: repeat(2, 100px);
+      grid-template-rows: repeat(2, 100px);
+      gap: 10px;
+      margin-top: 15px;
+    }
+    .caixa {
+      background-color: #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      border: 2px solid #999;
+      font-size: 20px;
+    }
+    .destaque {
+      background-color: #4caf50;
+      color: white;
+      border: 3px solid #2e7d32;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Relatório de Descoberta: Cápsula do Tempo</h1>
+
+  <nav aria-label="Sumário do Relatório">
+    <strong>Sumário</strong>
+    <ul>
+      <li><a href="#relatorio">Relatório de Descoberta</a></li>
+      <li><a href="#localizacao">Localização da Caixa</a></li>
+      <li><a href="#detalhes">Detalhes da Descoberta</a></li>
+    </ul>
+  </nav>
+
+  <section id="relatorio">
+    <h2>Relatório de Descoberta</h2>
+    <p>
+      Durante a expedição arqueológica ao local da cápsula do tempo, diversos artefatos foram cuidadosamente recuperados. 
+      A equipe digitalizou e registrou cada item para análise e preservação. 
+      Este relatório apresenta um resumo inicial dos artefatos encontrados, incluindo sua categorização, peso e status atual de avaliação.
+    </p>
+  </section>
+
+  <section id="localizacao">
+    <h2>Localização da Caixa</h2>
+    <p><strong>Local:</strong> Monte Sintaxe</p>
+    <p><strong>Coordenada:</strong> 12</p>
+
+    <h3>Itens Encontrados:</h3>
+    <ul>
+      <li>Mapa Antigo</li>
+      <li>Diário de Bordo</li>
+      <li>Amuletos de Jade</li>
+    </ul>
+
+    <h3>Mapa Esquemático:</h3>
+    <div class="mapa">
+      <div class="caixa local-a">A</div>
+      <div class="caixa local-b">B</div>
+      <div class="caixa local-c">C</div>
+      <div class="caixa local-d destaque">D</div>
+    </div>
+    <p><em>A caixa descoberta estava na posição <strong>D</strong>.</em></p>
+  </section>
+
+  <section id="detalhes">
+    <h2>Detalhes da Descoberta</h2>
+
+    <table aria-label="Tabela de Artefatos Encontrados na Cápsula do Tempo">
+      <caption>Artefatos Encontrados na Cápsula do Tempo</caption>
+      <thead>
+        <tr>
+          <th scope="col">Categoria</th>
+          <th scope="col">Artefato</th>
+          <th scope="col">Peso (kg)</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Manuscrito</td>
+          <td>Mapa Antigo</td>
+          <td>0.8</td>
+          <td>Em avaliação</td>
+        </tr>
+        <tr>
+          <td>Manuscrito</td>
+          <td>Diário de Bordo</td>
+          <td>1.2</td>
+          <td>Analisado</td>
+        </tr>
+        <tr>
+          <td>Joalheria</td>
+          <td>Amuleto de Jade (Pequeno)</td>
+          <td>0.3</td>
+          <td>Analisado</td>
+        </tr>
+        <tr>
+          <td>Joalheria</td>
+          <td>Amuleto de Jade (Grande)</td>
+          <td>0.6</td>
+          <td>Em avaliação</td>
+        </tr>
+        <tr>
+          <td>Ferramenta</td>
+          <td>Bússola Criptografada</td>
+          <td>0.9</td>
+          <td>Pendente</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+</body>
+</html>
