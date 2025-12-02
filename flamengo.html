@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Clube de Regatas do Flamengo</title>
+    <link rel="icon" href="icone.png" type="image/png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+            text-decoration: none;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        ul { list-style: none; }
+
+        :root {
+            --fla-red: #C3281E;
+            --fla-black: #000000;
+            --fla-gray: #f4f4f4;
+            --text-dark: #1d1d1d;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        header { width: 100%; }
+
+        .header-top {
+            background-color: var(--fla-red);
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+        }
+
+        .header-center-links {
+            flex-grow: 1;
+            text-align: center;
+            padding-left: 150px;
+        }
+
+        .header-center-links a {
+            color: white;
+            font-size: 18px;
+            font-weight: 900;
+            margin: 0 20px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .header-right-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-right-area img.sponsor-top {
+            height: 25px;
+            filter: brightness(0) invert(1);
+        }
+
+        .header-right-area img.social-icon {
+            height: 18px;
+            margin-left: 5px;
+        }
+
+        .header-nav {
+            background-color: var(--fla-black);
+            height: 50px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .main-logo {
+            position: absolute;
+            top: -65px; 
+            left: 5%;
+            z-index: 10;
+            margin-top: -60px;
+        }
+
+        .nav-menu {
+            display: flex;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 150px;
+        }
+
+        .nav-menu li { margin: 0 15px; }
+
+        .nav-menu a {
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover { color: var(--fla-red); }
+
+        .hero-section {
+            display: flex;
+            width: 100%;
+            height: 450px;
+            background-color: #000;
+        }
+
+        .hero-item {
+            width: 50%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-item:hover img { transform: scale(1.08); }
+
+        .hero-text {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            padding: 20px;
+            width: 100%;
+            pointer-events: none;
+        }
+
+        .tag-vermelha {
+            background-color: var(--fla-red);
+            color: white;
+            padding: 4px 8px;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 2px;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        .info-painel {
+            width: 100%;
+            background-color: #EFF1F3;
+            background-image: url("https://www.transparenttextures.com/patterns/dust.png");
+            padding: 50px 0;
+            margin-bottom: 0; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-bottom: 1px solid #ddd;
+        }
+
+        .painel-grid { display: flex; justify-content: space-between; }
+        .col-metade { width: 48%; }
+
+        .section-title {
+            font-size: 16px;
+            color: var(--fla-black);
+            font-weight: 900;
+            border-left: 5px solid var(--fla-red);
+            padding-left: 10px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .match-info { text-align: center; }
+        .camp-badge {
+            background-color: var(--fla-red);
+            color: white;
+            padding: 5px 10px;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .placar-area { display: flex; justify-content: center; align-items: center; gap: 20px; margin-bottom: 15px; }
+        .placar-area img { height: 70px; }
+        .placar-area span { font-size: 24px; font-weight: bold; }
+        .detalhes-jogo { color: var(--fla-red); font-weight: bold; font-size: 15px; margin-top: 5px; text-transform: uppercase; }
+
+        .btn-ingresso {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--fla-red);
+            border: 1px solid var(--fla-red);
+            padding: 10px 25px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            transition: 0.3s;
+            background-color: transparent; 
+        }
+        .btn-ingresso:hover { background-color: var(--fla-red); color: white; }
+
+        .tabela-classificacao { width: 100%; border-collapse: collapse; font-size: 14px; }
+        .tabela-classificacao th { text-align: center; color: #666; font-weight: normal; font-size: 12px; padding-bottom: 10px; }
+        .tabela-classificacao td { padding: 8px 0; text-align: center; border-bottom: 1px solid #dcdcdc; } 
+        .tabela-classificacao .time-nome { text-align: left; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+        .tabela-classificacao img { height: 24px; }
+
+        .area-branca-unificada {
+            background-color: white;
+            width: 100%;
+            padding-top: 40px;
+        }
+
+        .news-grid-section {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .news-column {
+            flex: 1;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .section-header h2 {
+            font-size: 18px;
+            font-weight: 900;
+            color: var(--fla-black);
+            text-transform: uppercase;
+        }
+
+        .section-header a {
+            color: var(--fla-red);
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .news-card-large {
+            position: relative;
+            width: 100%;
+            height: 350px; 
+            overflow: hidden;
+            border-radius: 4px;
+            background-color: #000;
+        }
+
+        .news-card-large img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+            opacity: 0.8;
+        }
+
+        .news-card-large:hover img {
+            transform: scale(1.05);
+            opacity: 0.6;
+        }
+
+        .news-card-large .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+            color: white;
+            pointer-events: none;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 900;
+            text-transform: uppercase;
+            margin: 5px 0;
+            line-height: 1.1;
+        }
+
+        .card-desc {
+            font-size: 13px;
+            color: #ddd;
+            margin-top: 5px;
+        }
+
+        .flatv-grid {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .featured-video-container {
+            flex: 2; 
+        }
+
+        .featured-video {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            background-color: black;
+        }
+
+        .featured-video img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+        }
+
+        .play-overlay-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0,0,0,0.6);
+            border: 2px solid white;
+            color: white;
+            padding: 10px 20px;
+            font-weight: bold;
+            font-size: 14px;
+            border-radius: 4px;
+        }
+
+        .featured-title {
+            font-size: 20px;
+            font-weight: 900;
+            color: var(--fla-black);
+            text-transform: uppercase;
+        }
+
+        .featured-desc {
+            font-size: 14px;
+            color: #555;
+            margin-top: 5px;
+        }
+
+        .side-video-list {
+            flex: 1; 
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .side-video-item {
+            display: flex;
+            gap: 15px;
+            cursor: pointer;
+        }
+
+        .side-video-thumb {
+            width: 120px;
+            height: 70px;
+            background-color: #000;
+            border-radius: 4px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .side-video-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .side-video-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .side-video-title {
+            font-size: 13px;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: var(--fla-black);
+            margin-bottom: 3px;
+        }
+
+        .side-video-desc {
+            font-size: 11px;
+            color: #666;
+            line-height: 1.2;
+        }
+
+
+        .fotos-section { 
+            width: 100%;
+            background-color: white; 
+            padding: 20px 0 40px 0; 
+            margin-bottom: 0; 
+            box-shadow: none; 
+        }
+        
+        .fotos-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 15px; margin-bottom: 25px; }
+        .titulo-fotos { font-size: 24px; font-weight: 900; text-transform: uppercase; color: var(--fla-black); }
+        .link-veja-todas { color: var(--fla-red); font-weight: bold; font-size: 13px; text-transform: uppercase; }
+        
+        .fotos-grid { display: flex; gap: 25px; }
+        .foto-card { flex: 1; cursor: pointer; }
+        .foto-image-wrapper { overflow: hidden; border-radius: 8px; }
+        .foto-image-wrapper img { width: 100%; height: auto; display: block; object-fit: cover; aspect-ratio: 3 / 2; transition: transform 0.5s ease; }
+        .foto-card:hover .foto-image-wrapper img { transform: scale(1.08); }
+        .foto-content { padding-top: 15px; }
+        .foto-data { color: var(--fla-red); font-size: 12px; font-weight: bold; display: block; margin-bottom: 8px; }
+        .foto-titulo { font-size: 16px; font-weight: 900; text-transform: uppercase; line-height: 1.3; margin-bottom: 8px; color: var(--text-dark); transition: color 0.3s; }
+        .foto-card:hover .foto-titulo { color: var(--fla-red); }
+        .foto-credito { font-size: 12px; color: #777; }
+
+        .mini-banners-section { background-color: white; padding: 0 0 40px 0; margin-bottom: 0; }
+        .mini-banners-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            padding: 20px 0;
+            border-top: 1px solid #ddd;
+        }
+        .banner-row {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            align-items: center;
+        }
+        .banner-row img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .footer-red {
+            background-color: var(--fla-red);
+            color: white;
+            padding: 40px 0;
+            font-size: 16px;
+            text-align: center;
+        }
+        .address-table {
+            margin: 0 auto;
+            color: white;
+            font-size: 18px;
+            text-align: center;
+            width: 80%;
+        }
+        .address-table td { padding: 5px 20px; }
+
+        .footer-sponsors {
+            background-color: black;
+            padding: 50px 0;
+            text-align: center;
+            color: white;
+        }
+        
+        .sponsor-section-title {
+            color: var(--fla-red);
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 30px 0 20px 0;
+            font-size: 16px;
+        }
+
+        .sponsor-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .sponsor-grid img {
+            max-height: 45px; 
+            width: auto;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+        
+        .sponsor-grid img:hover { opacity: 1; }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-top">
+            <div style="width: 100px;"></div>
+            <div class="header-center-links">
+                <a href="#">SEJA SÓCIO-TORCEDOR</a>
+                <a href="#">ACESSE O FLA-PRÊMIOS</a>
+            </div>
+            <div class="header-right-area">
+                <a href="#"><img src="https://logodownload.org/wp-content/uploads/2021/01/betano-logo-1.png" class="sponsor-top" alt="Betano"></a>
+                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Adidas_Logo.svg/1200px-Adidas_Logo.svg.png" class="sponsor-top" alt="Adidas"></a>
+                <div style="width: 1px; height: 20px; background: rgba(255,255,255,0.3); margin: 0 10px;"></div>
+                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/59/59439.png" class="social-icon" alt="Facebook"></a>
+                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/87/87390.png" class="social-icon" alt="Instagram"></a>
+                <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/152/152810.png" class="social-icon" alt="Youtube"></a>
+                <a href="#"><img src="https://www.flamengo.com.br/img/logos/x-twitter-brands.svg" class="social-icon" alt="X"></a>
+            </div>
+        </div>
+
+        <div class="header-nav">
+            <div class="container" style="position: relative;">
+                <a href="#" class="main-logo">
+                    <img src="https://logodownload.org/wp-content/uploads/2016/09/flamengo-logo-0.png" width="140" height="140" alt="Flamengo">
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="#">Futebol</a></li>
+                    <li><a href="#">Ingressos</a></li>
+                    <li><a href="#">Sócio-Torcedor</a></li>
+                    <li><a href="#">Basquete</a></li>
+                    <li><a href="#">Olímpicos</a></li>
+                    <li><a href="#">FLA PRÊMIOS</a></li>
+                    <li><a href="#">Loja</a></li>
+                    <li><a href="#">Clube</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <a href="#" class="hero-item">
+            <img src="https://images.flamengo.com.br/public/images/artigos/bodies/1764633059.jpg" alt="Notícia 1">
+            <div class="hero-text">
+                <span class="tag-vermelha">Futebol</span>
+                <h2>APÓS O TETRA DA AMÉRICA, FLAMENGO SE REAPRESENTA COM FOCO NA RETA FINAL DO BRASILEIRÃO</h2>
+            </div>
+        </a>
+        <a href="#" class="hero-item">
+            <img src="https://images.flamengo.com.br/public/images/artigos/bodies/1764540925.jpeg" alt="Notícia 2">
+            <div class="hero-text">
+                <span class="tag-vermelha">Futebol</span>
+                <h2>NOS BRAÇOS DA NAÇÃO! FLAMENGO COMEMORA O TETRA DA LIBERTADORES NAS RUAS DO RIO DE JANEIRO</h2>
+            </div>
+        </a>
+    </section>
+
+    <section class="info-painel">
+        <div class="container"> 
+            <div class="painel-grid">
+                <div class="col-metade">
+                    <div class="section-title">PRÓXIMO JOGO</div>
+                    <div class="match-info">
+                        <span class="camp-badge">NBB 2025/26</span>
+                        <h3>PINHEIROS X FLAMENGO</h3>
+                        <div class="placar-area">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Esporte_Clube_Pinheiros.svg" alt="Pinheiros" style="height: 60px;">
+                            <span style="color:#aaa">X</span>
+                            <img src="https://images.flamengo.com.br/public/images/escudos/1524865930.png" alt="Flamengo">
+                        </div>
+                        <p class="detalhes-jogo">GINÁSIO HENRIQUE VILLABOIM</p>
+                        <p class="detalhes-jogo">03/12 - 20:00</p>
+                        <a href="#" class="btn-ingresso">COMPRE INGRESSOS</a>
+                    </div>
+                </div>
+                <div class="col-metade">
+                    <div class="section-title">CLASSIFICAÇÃO</div>
+                    <span class="camp-badge" style="margin-left: 10px;">CAMPEONATO BRASILEIRO 2025</span>
+                    <table class="tabela-classificacao">
+                        <thead><tr><th>#</th><th>Time</th><th>P</th><th>J</th><th>V</th></tr></thead>
+                        <tbody>
+                            <tr><td>1</td><td class="time-nome"><img src="https://images.flamengo.com.br/public/images/escudos/1524865930.png"> FLA</td><td>75</td><td>36</td><td>22</td></tr>
+                            <tr><td>2</td><td class="time-nome"><img src="https://images.flamengo.com.br/public/images/escudos/1522775388.png"> PAL</td><td>70</td><td>36</td><td>21</td></tr>
+                            <tr><td>3</td><td class="time-nome"><img src="https://images.flamengo.com.br/public/images/escudos/1522775401.png"> CRU</td><td>68</td><td>35</td><td>19</td></tr>
+                            <tr><td>4</td><td class="time-nome"><img src="https://images.flamengo.com.br/public/images/escudos/1742562693.png"> MIR</td><td>63</td><td>35</td><td>17</td></tr>
+                        </tbody>
+                    </table>
+                    <div style="text-align: right; margin-top: 10px;">
+                        <a href="#" style="color: var(--fla-red); font-weight: bold; font-size: 12px;">VEJA A TABELA COMPLETA</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="area-branca-unificada">
+        <div class="container">
+            
+            <div class="news-grid-section">
+                <div class="news-column">
+                    <div class="section-header">
+                        <h2>REMO E CANOAGEM</h2>
+                        <a href="#">VEJA TODAS AS NOTÍCIAS</a>
+                    </div>
+                    <div class="news-card-large">
+                        <img src="https://images.flamengo.com.br/public/images/artigos/36927/1763920457.jpeg" alt="Remo">
+                        <div class="overlay">
+                            <span class="tag-vermelha">REMO E CANOAGEM</span>
+                            <h3 class="card-title">É CAMPEÃO! FLAMENGO VENCE SEXTA REGATA E CONQUISTA O ESTADUAL DE REMO DE FORMA INVICTA</h3>
+                            <p class="card-desc">Conquista marca o 56º título carioca do Esporte Fundador Rubro-Negro; o décimo sem perder nenhuma regata</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-column">
+                    <div class="section-header">
+                        <h2>FUTEBOL</h2>
+                        <a href="#">VEJA TODAS AS NOTÍCIAS</a>
+                    </div>
+                    <div class="news-card-large">
+                        <img src="https://images.flamengo.com.br/public/images/artigos/bodies/1764631821.jpg" alt="Futebol">
+                        <div class="overlay">
+                            <span class="tag-vermelha">FUTEBOL</span>
+                            <h3 class="card-title">PELO FLAMENGO, VARELA REGISTRA AS DUAS MAIORES VELOCIDADES DA FINAL</h3>
+                            <p class="card-desc">Lateral atingiu a maior velocidade da decisão aos 92' e esteve entre os atletas mais participativos em pressão, recuperação e construção ofensiva</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="news-grid-section">
+                <div class="news-column">
+                    <div class="section-header">
+                        <h2>BASQUETE</h2>
+                        <a href="#">VEJA TODAS</a>
+                    </div>
+                    <div class="news-card-large">
+                        <img src="https://images.flamengo.com.br/public/images/artigos/36926/1763916398.jpeg" alt="Basquete">
+                        <div class="overlay">
+                            <span class="tag-vermelha">BASQUETE</span>
+                            <h3 class="card-title">FLAMENGO VENCE RIO CLARO NA ABERTURA DA RODADA DUPLA E SEGUE LÍDER DO NBB</h3>
+                            <p class="card-desc">Na prévia da partida entre Flamengo e RB Bragantino no Maracanã, Mengão faz a alegria da torcida e confirma favoritismo contra equipe paulista</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="news-column">
+                    <div class="section-header">
+                        <h2>FUTEBOL FEMININO</h2>
+                        <a href="#">VEJA TODAS</a>
+                    </div>
+                    <div class="news-card-large">
+                        <img src="https://images.flamengo.com.br/public/images/artigos/36937/1764166067.png" alt="FutFem">
+                        <div class="overlay">
+                            <span class="tag-vermelha">FUTEBOL FEMININO</span>
+                            <h3 class="card-title">FLAMENGO VAI DISPUTAR A WORLD SEVENS FOOTBALL NOS ESTADOS UNIDOS</h3>
+                            <p class="card-desc">Torneio de Fut7 será na próxima semana e o rubro-negro está no grupo A com Kansas City, Tigres-MEX e Toronto-CAN</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <h2>FLAMENGO TV</h2>
+                <a href="#">VEJA TODOS OS VÍDEOS</a>
+            </div>
+            
+            <div class="flatv-grid">
+                <div class="featured-video-container">
+                    <div class="featured-video">
+                        <img src="https://images.flamengo.com.br/public/images/fla-tv/1/176399294322.jpg" alt="Destaque">
+                        <div class="play-overlay-box">▶ PLAY</div>
+                    </div>
+                    <div class="featured-info">
+                        <h3 class="featured-title">BASTIDORES - FLA 3X0 RB BRAGANTINO</h3>
+                        <p class="featured-desc">Mengão vence o RB Bragantino e se aproxima do nono título brasileiro. Veja os lances na FlamengoTV.</p>
+                    </div>
+                </div>
+
+                <div class="side-video-list">
+                    <div class="side-video-item">
+                        <div class="side-video-thumb">
+                            <img src="https://images.flamengo.com.br/public/images/fla-tv/1/176339978299.jpg" alt="Video 1">
+                        </div>
+                        <div class="side-video-info">
+                            <h4 class="side-video-title">BASTIDORES - SPORT 1X5 FLA</h4>
+                            <p class="side-video-desc">Mengão goleia o Sport e reassume a liderança do Brasileirão. Veja os lances na FlamengoTV.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="side-video-item">
+                        <div class="side-video-thumb">
+                            <img src="https://images.flamengo.com.br/public/images/fla-tv/1/176287317035.jpg" alt="Video 2">
+                        </div>
+                        <div class="side-video-info">
+                            <h4 class="side-video-title">BASTIDORES - FLA 3X2 SANTOS</h4>
+                            <p class="side-video-desc">Com emoção na fim, mengão vence o Santos e segue na briga pelo título brasileiro. Veja os lances na FlamengoTV</p>
+                        </div>
+                    </div>
+                    <div class="side-video-item">
+                        <div class="side-video-thumb">
+                            <img src="https://images.flamengo.com.br/public/images/fla-tv/1/176218072564.jpg" alt="Video 3">
+                        </div>
+                        <div class="side-video-info">
+                            <h4 class="side-video-title">BASTIDORES - FLA 3X0 SPORT</h4>
+                            <p class="side-video-desc">Com dois gols de Bruno Henrique e golaço de falta de Arrascaeta, Mengão vence o Sport no Maraca. Veja os lances na FlamengoTV</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+
+        <section class="fotos-section">
+            <div class="container">
+                <div class="fotos-header">
+                    <h2 class="titulo-fotos">FOTOS</h2>
+                    <a href="#" class="link-veja-todas">VEJA TODOS AS FOTOS</a>
+                </div>
+                <div class="fotos-grid">
+                    <article class="foto-card">
+                        <div class="foto-image-wrapper"><img src="https://images.flamengo.com.br/public/images/galeria/4919/0176373593299.jpg" alt="Foto 1"></div>
+                        <div class="foto-content">
+                            <span class="foto-data">19/11/2025</span>
+                            <h3 class="foto-titulo">FLUMINENSE X FLAMENGO - CAMPEONATO BRASILEIRO - MARACANÃ 19-11-2025</h3>
+                            <p class="foto-credito">Gilvan de Souza/Flamengo</p>
+                        </div>
+                    </article>
+                    <article class="foto-card">
+                            <div class="foto-image-wrapper"><img src="https://images.flamengo.com.br/public/images/galeria/4918/176373505798.jpg" alt="Foto 2"></div>
+                        <div class="foto-content">
+                            <span class="foto-data">17/11/2025</span>
+                            <h3 class="foto-titulo">EVENTO SOLENE 130 ANOS DO FLAMENGO - 17-11-2025</h3>
+                            <p class="foto-credito">Gilvan de Souza/Flamengo</p>
+                        </div>
+                    </article>
+                    <article class="foto-card">
+                            <div class="foto-image-wrapper"><img src="https://images.flamengo.com.br/public/images/galeria/4917/176333326695.jpg" alt="Foto 3"></div>
+                        <div class="foto-content">
+                            <span class="foto-data">16/11/2025</span>
+                            <h3 class="foto-titulo">SPORT X FLAMENGO - CAMPEONATO BRASILEIRO - ARENA PERNAMBUCO - 15-11-2025</h3>
+                            <p class="foto-credito">Gilvan de Souza/Flamengo</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <section class="mini-banners-section">
+                <div class="mini-banners-wrapper">
+                    <div class="banner-row">
+                        <a href="https://kg-br.com/C.ashx?btag=a_60988b_10007c_&affid=40845&siteid=60988&adid=10007&c=">
+                            <img src="https://images.flamengo.com.br/public/images/mini-banners/175578832088.png" alt="Betano">
+                        </a>
+                        <a href="https://www.adidas.com.br/flamengo">
+                            <img src="https://images.flamengo.com.br/public/images/mini-banners/167517853656.png" alt="Adidas">
+                        </a>
+                        <a href="https://nacaobrbfla.brb.com.br/">
+                            <img src="https://images.flamengo.com.br/public/images/mini-banners/166310404836.png" alt="BRB">
+                        </a>
+                    </div>
+                    <div class="banner-row">
+                        <a href="https://nacao.flamengo.com.br/">
+                            <img src="https://images.flamengo.com.br/public/images/mini-banners/168485205578.png" alt="Nação">
+                        </a>
+                    </div>
+                    <div class="banner-row">
+                        <a href="https://www.certisign.com.br/seal/splashcerti?dn=flamengo.com.br">
+                            <img src="https://www.flamengo.com.br/img/seloSeguroCertiSign.png" alt="Certisign">
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="footer-red">
+        <div class="container">
+            <table class="address-table">
+                <tr>
+                    <td><p><b>Sede Gávea</b></p></td>
+                    <td><p><b>CT George Helal</b></p></td>
+                </tr>
+                <tr>
+                    <td><p>Av. Borges de Medeiros, 997</p></td>
+                    <td><p>Estrada dos Bandeirantes, 25.997</p></td>
+                </tr>
+                <tr>
+                    <td><p>Lagoa - Rio de Janeiro/RJ - Brasil</p></td>
+                    <td><p>Vargem Grande - Rio de Janeiro/RJ - Brasil</p></td>
+                </tr>
+                <tr>
+                    <td><p>CEP: 22430-041 - Tel:(21) 2159-0100</p></td>
+                    <td><p>CEP: 22785-275</p></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <footer>
+    <div class="footer-sponsors">
+
+        <h3 class="sponsor-section-title">PATROCINADORES</h3>
+
+        <div class="sponsor-grid">
+
+            <a href="#"><img src="https://images.flamengo.com.br/public/images/patrocinadores-parceiros-apoio/175578758679.png" alt="Betano"></a>
+
+            <a href="#"><img src="https://images.flamengo.com.br/public/images/patrocinadores-parceiros-apoio/171415452996.png" alt="Adidas"></a>
+
+            <a href="#"><img src="https://images.flamengo.com.br/public/images/patrocinadores-parceiros-apoio/17141546968.png" alt="BRB"></a>
+
+            <a href="#"><img src="https://images.flamengo.com.br/public/images/patrocinadores-parceiros-apoio/171415499953.png" alt=""></a>
+
+            <a href="#"><img src="https://images.flamengo.com.br/public/images/patrocinadores-parceiros-apoio/175398283556.png" alt=""></a>
+
+            <a href="#"><img src="https://images.flamengo.com.br/public/images/patrocinadores-parceiros-apoio/171415518459.png" alt=""></a>
+            <a href="#"><img src="https://images.flamengo.com.br/public/images/patrocinadores-parceiros-apoio/173386226090.png" alt=""></a>
+            <a href="#"><img src="https://images.flamengo.com.br/public/images/patrocinadores-parceiros-apoio/172545956936.png" alt=""></a>
+            <a href="#"><img src="https://images.flamengo.com.br/public/images/patrocinadores-parceiros-apoio/173695170490.png" alt=""></a>
+            <a href="#"><img src="https://images.flamengo.com.br/public/images/patrocinadores-parceiros-apoio/172737618810.png" alt=""></a>
+            <a href="#"><img src="https://images.flamengo.com.br/public/images/patrocinadores-parceiros-apoio/175320601356.png" alt=""></a>
+            <a href="#"><img src="https://images.flamengo.com.br/public/images/patrocinadores-parceiros-apoio/171415587142.png" alt=""></a>
+            <a href="#"><img src="https://images.flamengo.com.br/public/images/patrocinadores-parceiros-apoio/176159609323.png" alt=""></a>
+            <a href="#"><img src="https://images.flamengo.com.br/public/images/patrocinadores-parceiros-apoio/174301410822.png" alt=""></a>
+            <a href="#"><img src="https://images.flamengo.com.br/public/images/patrocinadores-parceiros-apoio/171415665768.png" alt=""></a>
+            <a href="#"><img src="https://images.flamengo.com.br/public/images/patrocinadores-parceiros-apoio/171415692325.png" alt=""></a>
+            <a href="#"><img src="https://images.flamengo.com.br/public/images/patrocinadores-parceiros-apoio/171415685989.png" alt=""></a>
+            <a href="#"><img src="https://images.flamengo.com.br/public/images/patrocinadores-parceiros-apoio/175500586014.png" alt=""></a>
+            <a href="#"><img src="https://images.flamengo.com.br/public/images/patrocinadores-parceiros-apoio/171415715547.png" alt=""></a>
+
+        </div>
+
+
+
+        <h3 class="sponsor-section-title">PARCEIROS</h3>
+
+        <div class="sponsor-grid">
+
+            <a href="#"><img src="https://images.flamengo.com.br/public/images/patrocinadores-parceiros-apoio/171882195293.png" alt="Granado"></a>
+
+            <a href="#"><img src="https://images.flamengo.com.br/public/images/patrocinadores-parceiros-apoio/173582599173.png" alt=""></a>
+
+            <a href="#"><img src="https://images.flamengo.com.br/public/images/patrocinadores-parceiros-apoio/171882184676.png" alt=""></a>
+            
+            <a href="#"><img src="https://images.flamengo.com.br/public/images/patrocinadores-parceiros-apoio/172202008926.png" alt=""></a>
+
+            <a href="#"><img src="https://images.flamengo.com.br/public/images/patrocinadores-parceiros-apoio/173748745124.png" alt=""></a>
+
+            <a href="#"><img src="https://images.flamengo.com.br/public/images/patrocinadores-parceiros-apoio/174438299922.png" alt=""></a>
+
+            <a href="#"><img src="https://images.flamengo.com.br/public/images/patrocinadores-parceiros-apoio/175641013619.png" alt=""></a>
+            <br>
+
+            <a href="#"><img src="https://images.flamengo.com.br/public/images/patrocinadores-parceiros-apoio/176468111033.png" alt=""></a>
+
+        </div>
+
+        <h3 class="sponsor-section-title"> APOIO</h3>
+
+        <div class="sponsor-grid">
+            <a href="#"><img src="https://images.flamengo.com.br/public/images/patrocinadores-parceiros-apoio/176418125198.png" alt="dada"></a>
+
+            <a href="#"><img src="https://images.flamengo.com.br/public/images/patrocinadores-parceiros-apoio/17625374571.png" alt="afafa"></a>
+
+            <a href="#"><img src="https://images.flamengo.com.br/public/images/patrocinadores-parceiros-apoio/176470096218.png" alt="Bsfasfa"></a>
+
+            <a href="#"><img src="https://images.flamengo.com.br/public/images/patrocinadores-parceiros-apoio/176418147857.png" alt="oaejgpo"></a>
+
+        </div>
+    </div>
+
+    </footer>
+</body>
+</html>
