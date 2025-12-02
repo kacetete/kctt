@@ -3,11 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Clube — Mistura: layout oficial otimizado</title>
-
-<!-- Font Awesome para ícones -->
+<title>Clube — Mistura: layout oficial otimizado (com correções)</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 <style>
   /* Reset */
   *{box-sizing:border-box;margin:0;padding:0}
@@ -24,7 +21,7 @@
     --card-radius:12px;
   }
 
-  /* Topbar */
+  /* TOPBAR */
   .topbar{
     background:var(--red);
     color:#fff;
@@ -36,6 +33,7 @@
     font-weight:700;
     text-transform:uppercase;
     font-size:13px;
+    position:relative;
   }
   .topbar .left, .topbar .right{display:flex;gap:12px;align-items:center}
   .topbar a{color:#fff;opacity:.95}
@@ -45,30 +43,50 @@
   }
   .top-square:hover{background:rgba(0,0,0,.22);transform:translateY(-2px)}
 
+  /* Floating darker logo over the topbar */
+  .floating-logo{
+    position:absolute;
+    left:20px;
+    top:36px; /* sits overlapping header/topbar */
+    width:92px;height:92px;border-radius:10px;
+    background:linear-gradient(180deg, rgba(0,0,0,.65), rgba(0,0,0,.15));
+    display:flex;align-items:center;justify-content:center;padding:6px;
+    box-shadow:0 18px 40px rgba(0,0,0,.6);z-index:120;
+    transform:translateY(-50%); /* overlap effect */
+  }
+  .floating-logo img{width:86%; filter:brightness(.6) contrast(1.2) saturate(.9);}
+
   /* Header */
-  header.site-header{background:var(--black);position:sticky;top:0;z-index:60;box-shadow:0 6px 20px rgba(0,0,0,.25)}
-  .header-inner{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;gap:16px;padding:12px 16px}
-  .brand{display:flex;gap:14px;align-items:center}
-  .brand img{height:74px;width:auto;display:block}
+  header.site-header{background:var(--black);position:sticky;top:0;z-index:80;box-shadow:0 6px 20px rgba(0,0,0,.25);padding-top:46px}
+  .header-inner{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;gap:16px;padding:8px 16px}
+  .brand{display:flex;gap:14px;align-items:center;z-index:100}
+  .brand img{height:64px;width:auto;display:block}
   .brand-title .club{font-weight:900;letter-spacing:.6px;color:#fff}
   .brand-title .subtitle{font-size:12px;color:#ddd}
 
   /* Search + icons + button */
-  .utils{margin-left:auto;display:flex;gap:10px;align-items:center}
+  .utils{margin-left:auto;display:flex;gap:10px;align-items:center;z-index:100}
   .search{display:flex;align-items:center;background:#111;padding:6px;border-radius:8px}
-  .search input{background:transparent;border:0;outline:0;color:#fff;padding:6px;width:200px}
+  .search input{background:transparent;border:0;outline:0;color:#fff;padding:6px;width:180px}
   .util-btn{background:var(--red);color:#fff;padding:8px 12px;border-radius:8px;font-weight:800}
 
   .icon-bar{display:flex;gap:8px;align-items:center}
   .icon-box{
     width:36px;height:36px;border-radius:8px;background:#111;color:#fff;display:flex;align-items:center;justify-content:center;
-    cursor:pointer;transition:transform .22s, box-shadow .22s;animation:floaty 2.6s ease-in-out infinite;
+    cursor:pointer;transition:transform .22s, box-shadow .22s;
   }
-  .icon-box:hover{transform:translateY(-6px) scale(1.06);box-shadow:0 12px 24px rgba(0,0,0,.45)}
+
+  /* Individual small animations */
+  .anim-float{animation:floaty 2.6s ease-in-out infinite}
+  .anim-pulse{animation:pulse 2s infinite}
+  .anim-rotate{animation:rotatey 3s linear infinite}
+
   @keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+  @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.08)}100%{transform:scale(1)}}
+  @keyframes rotatey{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
 
   /* Nav */
-  nav.main-nav{background:linear-gradient(180deg, rgba(0,0,0,.9), rgba(0,0,0,.95));}
+  nav.main-nav{background:linear-gradient(180deg, rgba(0,0,0,.9), rgba(0,0,0,.97));}
   .nav-inner{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;padding:8px 16px;gap:16px;position:relative}
   .menu{display:flex;gap:6px;align-items:center}
   .menu > li{position:relative}
@@ -76,10 +94,7 @@
     color:#fff;padding:8px 12px;border-radius:8px;font-weight:800;text-transform:uppercase;display:flex;gap:8px;align-items:center;
     background:transparent;border:0;cursor:pointer;
   }
-
-  /* Dropdown */
   .dropdown{position:absolute;left:0;top:100%;min-width:260px;background:var(--white);color:#111;border-radius:10px;padding:12px;box-shadow:0 12px 30px rgba(0,0,0,.18);display:none;flex-direction:column;gap:6px;z-index:80}
-  .dropdown a{padding:8px;border-radius:8px;color:#111;font-weight:600}
   .menu > li:hover > .dropdown{display:flex}
   .dropdown.wide{min-width:360px;display:none}
   .menu > li:hover > .dropdown.wide{display:flex;flex-wrap:wrap;gap:8px}
@@ -89,7 +104,13 @@
   @media (max-width:980px){.container{grid-template-columns:1fr}.nav-inner{padding:8px}.menu{display:none}.menu-toggle{display:inline-flex}}
 
   /* Hero */
-  .hero{background:linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.1)), url('https://picsum.photos/1200/560?random=1') center/cover no-repeat;border-radius:12px;color:#fff;padding:28px;min-height:260px;display:flex;flex-direction:column;justify-content:flex-end;box-shadow:0 12px 30px rgba(0,0,0,.25)}
+  .hero{
+    background:linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.1)),
+    url('https://picsum.photos/1200/560?random=1') center/cover no-repeat;
+    border-radius:12px;color:#fff;padding:28px;
+    min-height:260px;display:flex;flex-direction:column;justify-content:flex-end;
+    box-shadow:0 12px 30px rgba(0,0,0,.25)
+  }
   .hero h1{font-size:26px;margin-bottom:6px}
   .hero p{color:rgba(255,255,255,.92);max-width:760px}
 
@@ -100,6 +121,7 @@
   @media (max-width:700px){.section-grid{grid-template-columns:1fr}}
 
   .card{background:var(--white);border-radius:var(--card-radius);overflow:hidden;box-shadow:0 10px 28px rgba(10,10,10,.06);display:flex;flex-direction:column}
+  .card img{width:100%;height:180px;object-fit:cover}
   .card .card-header{padding:14px;border-bottom:1px solid #f0f0f2}
   .card h3{color:var(--black);margin-bottom:6px;font-size:16px}
   .card .meta{color:var(--muted);font-size:13px}
@@ -108,12 +130,6 @@
   .card.small{font-size:14px}
   .gallery{display:flex;gap:8px;padding:12px}
   .gallery img{width:100%;height:120px;object-fit:cover;border-radius:8px}
-
-  /* News grid (older style) */
-  .news-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}
-  @media (max-width:700px){.news-grid{grid-template-columns:1fr}}
-  .thumb{width:45%;min-height:110px;background-size:cover;background-position:center}
-  .content{padding:12px;display:flex;flex-direction:column;gap:8px}
 
   /* Sidebar */
   .sidebar .widget{background:var(--white);padding:12px;border-radius:10px;box-shadow:0 6px 16px rgba(15,15,15,.05);margin-bottom:14px}
@@ -130,7 +146,6 @@
   .s-nacao{background:linear-gradient(90deg,#b80f0f,#000)}
   .s-siteseg{background:#0b6b3b}
 
-  /* helpers */
   .muted{color:var(--muted)}
   .divider{height:1px;background:#f0f0f2;margin:12px 0;border-radius:4px}
 </style>
@@ -144,7 +159,7 @@
       <a href="#">Ingressos</a>
       <a href="#">Sócio-Torcedor</a>
 
-      <!-- Dois quadradinhos -->
+      <!-- Dois quadradinhos pedida -->
       <div class="top-square" role="button" tabindex="0">Seja Sócio-Torcedor</div>
       <div class="top-square" role="button" tabindex="0">Acesse o Fla-Prêmios</div>
     </div>
@@ -153,13 +168,19 @@
       <a href="#">Loja Oficial</a>
       <a href="#">Fla Prêmios</a>
     </div>
+
+    <!-- floating darker logo sobreposto à barra inicial -->
+    <div class="floating-logo" aria-hidden="true">
+      <!-- uso de mesma imagem, com filtro mais escuro -->
+      <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Flamengo_braz_logo.svg" alt="Escudo Flamengo">
+    </div>
   </div>
 
   <!-- HEADER -->
   <header class="site-header" role="banner" aria-label="Cabeçalho do site">
     <div class="header-inner">
       <div class="brand" aria-hidden="false">
-        <!-- Logo normal (SVG) -->
+        <!-- Logo normal (igual ao seu código) -->
         <img src="https://upload.wikimedia.org/wikipedia/commons/2/2e/Flamengo_braz_logo.svg" alt="Escudo CRF" />
         <div class="brand-title">
           <div class="club">Clube de Regatas — Template</div>
@@ -173,16 +194,16 @@
           <input type="search" placeholder="Pesquisar" aria-label="Pesquisar no site">
         </div>
 
-        <!-- ICONS ANIMATED -->
+        <!-- ICONS ANIMATED (com classes de animação individual para efeito diverso) -->
         <div class="icon-bar" aria-hidden="false" style="align-items:center">
-          <div class="icon-box" title="Adidas"><i class="fa-brands fa-adidas"></i></div>
-          <div class="icon-box" title="Betano" style="background:#ff7a00"><i class="fa-solid fa-bolt"></i></div>
-          <div class="icon-box" title="Vídeos"><i class="fa-solid fa-camera"></i></div>
-          <div class="icon-box" title="Facebook" style="background:#1877f2"><i class="fa-brands fa-facebook-f"></i></div>
-          <div class="icon-box" title="X"><i class="fa-brands fa-x-twitter"></i></div>
-          <div class="icon-box" title="Instagram" style="background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af)"><i class="fa-brands fa-instagram"></i></div>
-          <div class="icon-box" title="YouTube" style="background:#ff0000"><i class="fa-brands fa-youtube"></i></div>
-          <div class="icon-box" title="TikTok"><i class="fa-brands fa-tiktok"></i></div>
+          <div class="icon-box anim-float" title="Adidas"><i class="fa-brands fa-adidas"></i></div>
+          <div class="icon-box anim-pulse" title="Betano" style="background:#ff7a00"><i class="fa-solid fa-bolt"></i></div>
+          <div class="icon-box anim-rotate" title="Câmera"><i class="fa-solid fa-camera"></i></div>
+          <div class="icon-box anim-float" title="Facebook" style="background:#1877f2"><i class="fa-brands fa-facebook-f"></i></div>
+          <div class="icon-box anim-pulse" title="X"><i class="fa-brands fa-x-twitter"></i></div>
+          <div class="icon-box anim-float" title="Instagram" style="background:linear-gradient(45deg,#f58529,#dd2a7b,#8134af)"><i class="fa-brands fa-instagram"></i></div>
+          <div class="icon-box anim-pulse" title="YouTube" style="background:#ff0000"><i class="fa-brands fa-youtube"></i></div>
+          <div class="icon-box anim-rotate" title="TikTok"><i class="fa-brands fa-tiktok"></i></div>
         </div>
 
         <a class="util-btn" href="#" aria-label="Entrar">Entrar</a>
@@ -192,8 +213,6 @@
     <!-- NAV -->
     <nav class="main-nav" role="navigation" aria-label="Menu principal">
       <div class="nav-inner">
-        <button class="menu-toggle" id="menuToggle" aria-controls="mobileMenu" aria-expanded="false" style="display:none"><i class="fa fa-bars"></i></button>
-
         <ul class="menu" role="menubar" aria-label="Menu">
           <li role="none">
             <button role="menuitem" aria-haspopup="true" aria-expanded="false" data-toggle="dd-futebol">
@@ -225,74 +244,22 @@
             </div>
           </li>
 
-          <li role="none">
-            <button role="menuitem" aria-haspopup="true" aria-expanded="false" data-toggle="dd-olimpicos">Olímpicos <i class="fa fa-chevron-down" style="font-size:12px"></i></button>
-            <div class="dropdown wide" id="dd-olimpicos" role="menu" aria-label="Olímpicos">
-              <a href="#">Ginástica Artística</a>
-              <a href="#">Judô</a>
-              <a href="#">Nado Artístico</a>
-              <a href="#">Natação</a>
-              <a href="#">Polo Aquático</a>
-              <a href="#">Remo e Canoagem</a>
-              <a href="#">Vôlei</a>
-              <a href="#">Escola de Esportes</a>
-              <a href="#">CUIDAR</a>
-              <a href="#">De Olho no Pódio</a>
-            </div>
-          </li>
-
           <li role="none"><a href="#" role="menuitem">Fla Prêmios</a></li>
-
-          <li role="none">
-            <button role="menuitem" aria-haspopup="true" aria-expanded="false" data-toggle="dd-lojas">Lojas <i class="fa fa-chevron-down" style="font-size:12px"></i></button>
-            <div class="dropdown" id="dd-lojas" role="menu" aria-label="Lojas">
-              <a href="#">Site Oficial</a>
-              <a href="#">Loja Oficial - Shopee</a>
-              <a href="#">Lojas Físicas Oficiais</a>
-              <a href="#">Produtos Licenciados</a>
-            </div>
-          </li>
 
           <li role="none">
             <button role="menuitem" aria-haspopup="true" aria-expanded="false" data-toggle="dd-clube">Clube <i class="fa fa-chevron-down" style="font-size:12px"></i></button>
             <div class="dropdown wide" id="dd-clube" role="menu" aria-label="Clube">
               <a href="#">Notícias Gerais</a>
-              <a href="#">Integridade</a>
-              <a href="#">Educativa</a>
               <a href="#">Museu Flamengo</a>
-              <a href="#">Museu & Tour da Gávea</a>
               <a href="#">Seja Sócio</a>
-              <a href="#">Fla-Anjo</a>
-              <a href="#">História</a>
-              <a href="#">Responsabilidade Social</a>
-              <a href="#">Portal Sócio</a>
-              <a href="#">Colônia de Férias</a>
-              <a href="#">Conselhos</a>
-              <a href="#">Edital CODE</a>
-              <a href="#">Escola de Esportes</a>
-              <a href="#">Embaixadas e Consulados</a>
-              <a href="#">Estatuto do Clube</a>
-              <a href="#">Manual de Uso de Conteúdos CRF</a>
-              <a href="#">Ouvidoria</a>
-              <a href="#">FAG</a>
-              <a href="#">Gávea</a>
-              <a href="#">Transparência</a>
-              <a href="#">Leis de Incentivo e Convênios</a>
-              <a href="#">Lei Federal de Incentivo ao Esporte</a>
-              <a href="#">Aviso de Privacidade</a>
             </div>
           </li>
         </ul>
 
-        <!-- mobile menu -->
+        <!-- mobile menu (keeps original structure) -->
         <div class="mobile-menu" id="mobileMenu" aria-hidden="true" style="display:none;padding:12px;background:#fff;position:absolute;left:0;right:0;top:100%;box-shadow:0 12px 30px rgba(0,0,0,.18);z-index:120">
           <a href="#" class="mobile-link">Ingressos</a>
           <a href="#" class="mobile-link">Sócio-Torcedor</a>
-          <details style="margin-top:8px"><summary style="cursor:pointer;font-weight:900">Futebol</summary>
-            <div style="padding-left:12px">
-              <a href="#">Página Inicial</a><br><a href="#">Todas as Notícias</a><br>
-            </div>
-          </details>
         </div>
 
       </div>
@@ -302,26 +269,30 @@
   <!-- MAIN -->
   <main class="container" role="main">
     <section>
-      <article class="hero" aria-label="Destaque principal">
-        <h1>Destaque: vitória histórica</h1>
-        <p class="muted">Exemplo de manchete em destaque. Substitua por conteúdo real quando quiser.</p>
-      </article>
 
-      <!-- FUTEBOL SECTION (cards/tables 1-6) -->
-      <div class="section-title">Futebol</div>
-      <div class="section-grid">
+      <!-- HERO + CARD LADO A LADO (modificação solicitada) -->
+      <div style="display:flex;gap:20px;align-items:stretch;margin-bottom:18px;">
+        <article class="hero" style="flex:1;">
+          <img src="12.jpg" alt="">
+          <h1>Destaque: vitória histórica</h1>
+          <p class="muted">Exemplo de manchete em destaque. Substitua por conteúdo real quando quiser.</p>
+        </article>
 
-        <!-- 1 -->
-        <article class="card">
-            <img src="14.jpg" alt="">
+        <article class="card" style="flex:1;gap: 20px;">
+          <img src="14.jpg" alt="Mengão destaque">
           <div class="card-header"><h3>Após o tetra da América, Flamengo se reapresenta</h3><div class="meta">Futebol • 03/12/2025</div></div>
           <div class="card-body">Mengão enfrenta o Ceará nesta quarta-feira (3) no Maracanã e pode ser campeão com uma rodada de antecedência.</div>
         </article>
+      </div>
+
+      <!-- FUTEBOL SECTION (1-6) -->
+      <div class="section-title">Futebol</div>
+      <div class="section-grid">
 
         <!-- 2 -->
         <article class="card">
           <div class="card-header"><h3>Nos braços da Nação! Flamengo comemora o tetra da Libertadores</h3><div class="meta">Comemoração • 02/12/2025</div></div>
-          <div class="card-body">Acompanhado por milhares de torcedores, elenco rubro-negro desfila em trio elétrico no Centro da cidade.</div>
+          <div class="card-body">Acompanhado por milhares de torcedores, elenco desfila em trio elétrico no Centro do Rio.</div>
         </article>
 
         <!-- 3 Próximo jogo -->
@@ -363,19 +334,15 @@
 
       </div> <!-- /section-grid -->
 
-      <!-- BASQUETE SECTION (7) -->
+      <!-- BASQUETE -->
       <div class="section-title">Basquete</div>
       <div class="section-grid">
-        <article class="card">
-          <div class="card-header"><h3>Flamengo vence Rio Claro na abertura da rodada dupla</h3><div class="meta">Basquete • NBB</div></div>
-          <div class="card-body">Flamengo vence Rio Claro e segue líder do NBB.</div>
-        </article>
-
+        <article class="card"><div class="card-header"><h3>Flamengo vence Rio Claro na abertura da rodada dupla</h3><div class="meta">Basquete • NBB</div></div><div class="card-body">Flamengo vence Rio Claro e segue líder do NBB.</div></article>
         <article class="card small"><div class="card-header"><h3>Resumo</h3></div><div class="card-body">Prévia e números.</div></article>
         <article class="card small"><div class="card-header"><h3>Classificação</h3></div><div class="card-body">Tabela do NBB.</div></article>
       </div>
 
-      <!-- FUTEBOL FEMININO (8) -->
+      <!-- FUTEBOL FEMININO -->
       <div class="section-title">Futebol Feminino</div>
       <div class="section-grid">
         <article class="card"><div class="card-header"><h3>Flamengo vai disputar a World Sevens Football (EUA)</h3><div class="meta">Feminino</div></div><div class="card-body">Torneio de Fut7 — grupo A: Kansas City, Tigres (MEX), Toronto (CAN).</div></article>
@@ -383,7 +350,7 @@
         <article class="card small"><div class="card-header"><h3>Destaques</h3></div><div class="card-body">Entrevistas e análises.</div></article>
       </div>
 
-      <!-- FLAMENGO TV (9-12) -->
+      <!-- FLAMENGO TV -->
       <div class="section-title">Flamengo TV</div>
       <div class="section-grid">
         <article class="card"><div class="card-header"><h3>Bastidores - Fla 3x0 RB Bragantino</h3><div class="meta">FlamengoTV</div></div><div class="card-body">Bastidores e melhores momentos.</div></article>
@@ -405,11 +372,21 @@
 
     <!-- SIDEBAR -->
     <aside class="sidebar" aria-label="Barra lateral">
-      <div class="widget"><h4>Próximo jogo</h4><div class="muted">Campeonato Brasileiro</div><div style="font-weight:900;margin-top:6px">03/12 • Maracanã • 21:30</div></div>
+      <div class="widget">
+        <h4>Próximo jogo</h4>
+        <div class="muted">Campeonato Brasileiro</div>
+        <div style="font-weight:900;margin-top:6px">03/12 • Maracanã • 21:30</div>
+      </div>
 
-      <div class="widget"><h4>Classificação rápida</h4><div class="muted">1 FLA — 75</div><div class="muted">2 PAL — 70</div><div class="muted">3 CRU — 69</div></div>
+      <div class="widget">
+        <h4>Classificação rápida</h4>
+        <div class="muted">1 FLA — 75</div>
+        <div class="muted">2 PAL — 70</div>
+        <div class="muted">3 CRU — 69</div>
+      </div>
 
-      <div class="widget"><h4>Patrocinadores</h4>
+      <div class="widget">
+        <h4>Patrocinadores</h4>
         <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px">
           <div style="width:86px;height:36px;background:#ff7a00;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800">Betano</div>
           <div style="width:86px;height:36px;background:#000;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800">Adidas</div>
@@ -439,7 +416,7 @@
   </footer>
 
 <script>
-  // Dropdown toggle (keeps behavior similar ao seu original)
+  // dropdown toggle (desktop)
   document.querySelectorAll('[data-toggle]').forEach(btn=>{
     btn.addEventListener('click', (e)=>{
       e.preventDefault();
@@ -461,7 +438,7 @@
     }
   });
 
-  // Basic mobile menu toggle (keeps your original approach)
+  // mobile menu: basic
   const menuToggle = document.getElementById('menuToggle');
   const mobileMenu = document.getElementById('mobileMenu');
   if(menuToggle && mobileMenu){
@@ -472,7 +449,7 @@
       else { mobileMenu.style.display = 'block'; mobileMenu.setAttribute('aria-hidden','false'); mobileMenu.scrollTop = 0; }
     });
   }
-  // Responsive menu initial state
+  // responsiveness for menu
   if(window.innerWidth <= 980){ document.querySelectorAll('.menu').forEach(m=>m.style.display='none') }
   window.addEventListener('resize', ()=>{ if(window.innerWidth > 980){ document.querySelectorAll('.menu').forEach(m=>m.style.display='flex'); if(mobileMenu){ mobileMenu.style.display='none'; } } else { document.querySelectorAll('.menu').forEach(m=>m.style.display='none') } });
 
