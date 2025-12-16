@@ -1,4 +1,9 @@
-function  HomeScreen () {   return (     < View >       < Text > Olá Mundo 👋 🌍! </ Text >     </ View >   ); }
-
-
-
+function HomeScreen() {
+    return (
+      <View>
+        <Text>Olá Mundo 👋 🌍!</Text>
+      </View>
+    );
+  }
+  
+  export default HomeScreen;
