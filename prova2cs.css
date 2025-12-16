@@ -1,4 +1,153 @@
 * {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif;
+  color: #e6e6e6;
+  padding-top: 40px;
+}
+
+/* FUNDO OFICIAL REACT NATIVE */
+body {
+  background:
+    radial-gradient(1200px 600px at 50% -200px, #1a1a1f 0%, #0f1113 40%, #0b0d10 100%),
+    url("https://reactnative.dev/assets/images/hero-pattern-3e7d4c8c4f0d3c0c6cbe9fd9e7eae2ad.svg");
+  background-repeat: repeat;
+  background-attachment: fixed;
+}
+
+:root {
+  --cor-head: #121216;
+  --cor-etapa: #0f1113;
+  --cor-legend: #bfbfbf;
+  --azul: #00d3ff;
+  --max-width: 1200px;
+}
+
+a {
+  color: #68a6ff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* AVISO SUPERIOR */
+.Naomuda {
+  background-color: #07223d;
+  color: white;
+  text-align: center;
+  padding: 10px 16px;
+  font-size: 15px;
+  width: 100%;
+}
+
+/* HEADER */
+.black {
+  background-color: var(--cor-head);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 12px 28px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+}
+
+.nav-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.logo img {
+  height: 34px;
+  width: 34px;
+}
+
+.tex {
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.text {
+  display: flex;
+  gap: 22px;
+  font-size: 15px;
+  color: var(--cor-legend);
+}
+
+.text p {
+  margin: 0;
+  cursor: pointer;
+  position: relative;
+  font-weight: 500;
+}
+
+.text p::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background: var(--azul);
+  transition: width 0.3s ease;
+}
+
+.text p:hover::after {
+  width: 100%;
+}
+
+.nav-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logosInicial {
+  display: flex;
+  gap: 12px;
+}
+
+.logosInicial img {
+  height: 24px;
+  filter: invert(1);
+}
+
+.searchBox input {
+  width: 160px;
+  height: 34px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: rgba(255, 255, 255, 0.04);
+  padding: 6px 12px;
+  color: white;
+}
+
+.searchBox input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 720px) {
+  .text {
+    display: none;
+  }
+}*
+ {
     box-sizing: border-box;
   }
   
