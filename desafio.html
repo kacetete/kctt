@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Desafio Dois Botões</title>
+</head>
+<body>
+
+    <p id="paragrafo">Este é um parágrafo simples.</p>
+
+    <button onclick="alterarTexto()">Alterar texto</button>
+    <button onclick="alterarEstilo()">Alterar estilo</button>
+
+    <script>
+        function alterarTexto() {
+            document.getElementById("paragrafo").innerText = "O texto do parágrafo foi alterado!";
+        }
+
+        function alterarEstilo() {
+            document.getElementById("paragrafo").style.color = "white";
+            document.getElementById("paragrafo").style.backgroundColor = "blue";
+            document.getElementById("paragrafo").style.fontSize = "30px";
+        }
+    </script>
+
+</body>
+</html>
