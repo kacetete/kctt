@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos JavaScript</title>
+</head>
+<body>
+
+    <h1>Atividade de Eventos em JavaScript</h1>
+
+    <!-- Parte 1 — onclick -->
+    <h2>Parte 1 — onclick</h2>
+    <button onclick="mostrarMensagem()">Clique aqui</button>
+
+    <hr>
+
+    <!-- Parte 2 — keyup -->
+    <h2>Parte 2 — keyup</h2>
+    <input 
+        type="text" 
+        placeholder="Digite algo aqui"
+        onkeyup="mostrarNoConsole(this.value)"
+    >
+
+    <hr>
+
+    <!-- Parte 3 — change -->
+    <h2>Parte 3 — change</h2>
+    <select onchange="mostrarCurso(this.value)">
+        <option value="">Selecione um curso</option>
+        <option value="Informática">Informática</option>
+        <option value="Agropecuária">Agropecuária</option>
+        <option value="Edificações">Edificações</option>
+    </select>
+
+    <p id="mensagemCurso"></p>
+
+    <hr>
+
+    <!-- Desafio — submit -->
+    <h2>Desafio — submit</h2>
+
+    <form onsubmit="return validarFormulario()">
+        <label>Nome:</label><br>
+        <input type="text" id="nome" placeholder="Digite seu nome">
+        <br><br>
+
+        <label>E-mail:</label><br>
+        <input type="email" id="email" placeholder="Digite seu e-mail">
+        <br><br>
+
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <p id="mensagemFormulario"></p>
+
+    <script>
+        // Parte 1 — onclick
+        function mostrarMensagem() {
+            alert("Bem-vindo à Programação Web!");
+        }
+
+        // Parte 2 — keyup
+        function mostrarNoConsole(texto) {
+            console.log(texto);
+        }
+
+        // Parte 3 — change
+        function mostrarCurso(curso) {
+            let mensagem = document.getElementById("mensagemCurso");
+
+            if (curso !== "") {
+                mensagem.innerText = "Curso escolhido: " + curso;
+            } else {
+                mensagem.innerText = "";
+            }
+        }
+
+        // Desafio — submit
+        function validarFormulario() {
+            let nome = document.getElementById("nome").value;
+            let email = document.getElementById("email").value;
+            let mensagem = document.getElementById("mensagemFormulario");
+
+            if (nome === "" || email === "") {
+                mensagem.innerText = "Preencha todos os campos obrigatórios!";
+                mensagem.style.color = "red";
+
+                return false; // bloqueia o envio do formulário
+            } else {
+                mensagem.innerText = "Cadastro realizado com sucesso!";
+                mensagem.style.color = "green";
+
+                return false; // evita recarregar a página
+            }
+        }
+    </script>
+
+</body>
+</html>

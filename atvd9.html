@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validação de Cadastro</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 30px;
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            width: 300px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 8px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .erro {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .sucesso {
+            color: green;
+            font-size: 16px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Cadastro</h1>
+
+    <form id="formulario" onsubmit="validarFormulario(event)">
+        <label>Nome:</label>
+        <input type="text" id="nome">
+        <p id="erroNome" class="erro"></p>
+
+        <label>E-mail:</label>
+        <input type="email" id="email">
+        <p id="erroEmail" class="erro"></p>
+
+        <label>Senha:</label>
+        <input type="password" id="senha">
+        <p id="erroSenha" class="erro"></p>
+
+        <label>Confirmar Senha:</label>
+        <input type="password" id="confirmarSenha">
+        <p id="erroConfirmarSenha" class="erro"></p>
+
+        <button type="submit">Enviar Cadastro</button>
+
+        <p id="mensagemFinal" class="sucesso"></p>
+    </form>
+
+    <script>
+        function validarFormulario(event) {
+            event.preventDefault();
+
+            let nome = document.getElementById("nome");
+            let email = document.getElementById("email");
+            let senha = document.getElementById("senha");
+            let confirmarSenha = document.getElementById("confirmarSenha");
+
+            let erroNome = document.getElementById("erroNome");
+            let erroEmail = document.getElementById("erroEmail");
+            let erroSenha = document.getElementById("erroSenha");
+            let erroConfirmarSenha = document.getElementById("erroConfirmarSenha");
+            let mensagemFinal = document.getElementById("mensagemFinal");
+
+            let formularioValido = true;
+
+            erroNome.innerText = "";
+            erroEmail.innerText = "";
+            erroSenha.innerText = "";
+            erroConfirmarSenha.innerText = "";
+            mensagemFinal.innerText = "";
+
+            if (nome.value.trim() === "") {
+                erroNome.innerText = "O campo Nome é obrigatório.";
+                nome.style.border = "2px solid red";
+                formularioValido = false;
+            } else {
+                nome.style.border = "2px solid green";
+            }
+
+            if (email.value.trim() === "") {
+                erroEmail.innerText = "O campo E-mail é obrigatório.";
+                email.style.border = "2px solid red";
+                formularioValido = false;
+            } else {
+                email.style.border = "2px solid green";
+            }
+
+            if (senha.value.trim() === "") {
+                erroSenha.innerText = "O campo Senha é obrigatório.";
+                senha.style.border = "2px solid red";
+                formularioValido = false;
+            } else if (senha.value.length < 8) {
+                erroSenha.innerText = "A senha deve ter pelo menos 8 caracteres.";
+                senha.style.border = "2px solid red";
+                formularioValido = false;
+            } else {
+                senha.style.border = "2px solid green";
+            }
+
+            if (confirmarSenha.value.trim() === "") {
+                erroConfirmarSenha.innerText = "Confirme sua senha.";
+                confirmarSenha.style.border = "2px solid red";
+                formularioValido = false;
+            } else if (confirmarSenha.value !== senha.value) {
+                erroConfirmarSenha.innerText = "As senhas são diferentes.";
+                confirmarSenha.style.border = "2px solid red";
+                formularioValido = false;
+            } else {
+                confirmarSenha.style.border = "2px solid green";
+            }
+
+            if (formularioValido) {
+                mensagemFinal.innerText = "Cadastro realizado com sucesso!";
+            }
+        }
+    </script>
+
+</body>
+</html>
